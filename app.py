@@ -1,6 +1,7 @@
 import plotly.graph_objects as go
 import joblib
-from utils import row1, row2, row3, row4, row5, navbar
+from utils import row1, row2, row3, row4
+from utils2 import row5, navbar
 import pandas as pd
 from dash import Dash, dcc, html, Input, Output, State
 import dash_bootstrap_components as dbc
@@ -41,11 +42,6 @@ app.layout = html.Div([
 
 
 @app.callback(
-
-
-
-
-
     Output('prediction', 'children'),
 
     Input('submit-button-state', 'n_clicks'),
@@ -88,7 +84,7 @@ def km_travelled_update(engine_slider):
 
 def return_card_content(header, value_to_update, info=None):
     card_content = [
-        dbc.CardHeader(header),
+        dbc.CardHeader(header, style={'font-size':'x-large'}),
         dbc.CardBody(
             [
                 html.H5(str(value_to_update), className="card-title"),
@@ -104,19 +100,9 @@ def return_card_content(header, value_to_update, info=None):
 
 @app.callback(Output('tax-slider-output', 'children'), Input('tax-slider', 'value'),)
 def year_update(tax_value):
-    card_content = [
-        dbc.CardHeader("Tax Slider"),
-        dbc.CardBody(
-            [
-                html.H5(str(tax_value), className="card-title"),
-                html.P(
-                    "tax charged",
-                    className="card-text",
-                ),
-            ]
-        ),
-    ]
+    card_content = return_card_content("Tax", tax_value, "Tax Value")
     return card_content
+    
 
 
 @app.callback(Output('year-picker-output', 'children'), Input('year-picker', 'value'),)
@@ -134,7 +120,7 @@ def fuel_update(fuel_type):
 @app.callback(Output('transmission-dropdown-output', 'children'), Input('transmission-dropdown', 'value'),)
 def transmisssion_update(transmission_type):
     card_content = return_card_content(
-        "Transmission Type", transmission_type, "Type Of Fuel")
+        "Transmission Type", transmission_type, "Type Of Transmission")
     return card_content
 
 

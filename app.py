@@ -22,9 +22,8 @@ app.layout = html.Div([
               row3,
               #   html.Hr(),
               row4,
-              dbc.Button("Submit", className="me-1",
-                         id='submit-button-state', color="dark",),
-              ], className='container',style={'padding-top': '25px'}),
+             
+              ], className='container',style={'padding-top': '25px','padding-bottom':'25px'}),
 
     #html.Button(id='submit-button-state', n_clicks=0, children='Submit'),
 
@@ -33,7 +32,10 @@ app.layout = html.Div([
         html.Div([
             row5,
             html.Div(id='model-dropdown-output', style={'font-size': '30px'}),
-            html.Div(id='prediction', style={'font-size': '60px'})],
+            html.Div(id='prediction', style={'font-size': '60px'}),
+             dbc.Button("Submit", className="me-1",
+                         id='submit-button-state', color="dark",),
+            ],
             className="container"
         ),
     ])
